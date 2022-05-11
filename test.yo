@@ -1,0 +1,31 @@
+                      | #Initial code
+  0x000:              | 	.pos 0x00
+                      | 	
+  0x000: 30f400010000 | init:	irmovl Stack, %esp
+  0x006: 30f500010000 | 	irmovl Stack, %ebp
+  0x00c: 8012000000   | 	call Main
+  0x011: 00           | 	halt
+  0x012:              | Main:
+  0x012: 30f000020000 | 	irmovl	$0x200,%eax
+  0x018: 2001         | 	rrmovl %eax, %ecx
+  0x01a: 401004000000 | 	rmmovl %ecx, 4(%eax)
+  0x020: 503004000000 | 	mrmovl 4(%eax), %ebx
+                      | 	
+  0x026: 6033         | 	addl %ebx, %ebx
+  0x028: 6103         | 	subl %eax, %ebx
+                      | 	
+  0x02a: 7030000000   | 	jmp fl
+  0x02f: 10           | 	nop
+                      | 	
+                      | 	
+  0x030:              | fl:
+  0x030: 30f10a000000 | 	irmovl $0xA, %ecx
+  0x036: 6010         | 	addl %ecx, %eax
+  0x038: 713e000000   | 	jle f3
+  0x03d: 90           | 	ret
+  0x03e:              | f3:
+  0x03e: 30f10c000000 | 	irmovl $0xC, %ecx
+  0x044: 90           | 	ret
+                      | 	
+  0x100:              | 	.pos 0x100
+  0x100:              | Stack:
